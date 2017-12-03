@@ -36,6 +36,7 @@
         src_url,
         album_id
   </sql>
+
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
@@ -44,10 +45,10 @@
   </select>
 
   <insert id="insert" parameterType="com.design.model.Song" >
-    insert into song (
-    id,
-    scene,
-    district,
+      insert into song (
+      id,
+      scene,
+      district,
       style,
       singer_id,
       popularity,

@@ -19,19 +19,5 @@ public class HelloController {
     public String getUrl(@PathVariable("index") String index) {
         return index;
     }
-
-    @RequestMapping("/user/{index}")
-    public String getUser(@PathVariable("index") String index) {
-        return "user/" + index;
-    }
-
-    @RequestMapping("/jie/{index}")
-    public String getJie(@PathVariable("index") String index) {
-        return "jie/" + index;
-    }
-
-    @RequestMapping("/test/{index}")
-    public String getTest(@PathVariable("index") String index) {
-        return "test/" + index;
-    }
+    
 }

@@ -8,7 +8,7 @@ public class Album extends BaseModel{
 
     private String sect;
 
-    private String songerId;
+    private String singerId;
 
     private Integer popularity;
 
@@ -28,12 +28,12 @@ public class Album extends BaseModel{
         this.sect = sect;
     }
 
-    public String getSongerId() {
-        return songerId;
+    public String getSingerId() {
+        return singerId;
     }
 
-    public void setSongerId(String songerId) {
-        this.songerId = songerId;
+    public void setSingerId(String singerId) {
+        this.singerId = singerId;
     }
 
     public Integer getPopularity() {

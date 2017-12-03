@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="langueges" property="langueges" jdbcType="VARCHAR" />
     <result column="sect" property="sect" jdbcType="VARCHAR" />
-    <result column="songer_id" property="songerId" jdbcType="VARCHAR" />
+    <result column="singer_id" property="singerId" jdbcType="VARCHAR" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -18,7 +18,7 @@
       id,
       langueges,
       sect,
-      songer_id,
+      singer_id,
       remarks,
       create_by,
       create_date,
@@ -40,7 +40,7 @@
       id,
       langueges,
       sect,
-      songer_id,
+      singer_id,
       remarks,
       create_by,
       create_date,
@@ -52,7 +52,7 @@
       #{id,jdbcType=VARCHAR},
       #{langueges,jdbcType=VARCHAR},
       #{sect,jdbcType=VARCHAR},
-      #{songerId,jdbcType=VARCHAR},
+      #{singerId,jdbcType=VARCHAR},
       #{remarks,jdbcType=VARCHAR},
       #{createBy,jdbcType=VARCHAR},
       #{createDate,jdbcType=TIMESTAMP},
@@ -71,8 +71,8 @@
       <if test="sect != null" >
         sect = #{sect,jdbcType=VARCHAR},
       </if>
-      <if test="songerId != null" >
-        songer_id = #{songerId,jdbcType=VARCHAR},
+      <if test="singerId != null" >
+          singer_id = #{singerId,jdbcType=VARCHAR},
       </if>
       <if test="remarks != null" >
         remarks = #{remarks,jdbcType=VARCHAR},

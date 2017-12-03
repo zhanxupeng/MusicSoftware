@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.design.repo.AlbumMapper" >
-  <resultMap id="BaseResultMap" type="com.design.model.Album" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="langueges" property="langueges" jdbcType="VARCHAR" />
-    <result column="sect" property="sect" jdbcType="VARCHAR" />
-    <result column="singer_id" property="singerId" jdbcType="VARCHAR" />
-    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
-    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
-    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
-    <result column="del_flag" property="delFlag" jdbcType="VARCHAR" />
-    <result column="popularity" property="popularity" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.design.repo.AlbumMapper">
+    <resultMap id="BaseResultMap" type="com.design.model.Album">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="langueges" property="langueges" jdbcType="VARCHAR"/>
+        <result column="sect" property="sect" jdbcType="VARCHAR"/>
+        <result column="singer_id" property="singerId" jdbcType="VARCHAR"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+        <result column="popularity" property="popularity" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="OutResultMap" type="com.design.domain.album.AlbumOut">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="langueges" property="langueges" jdbcType="VARCHAR"/>
+        <result column="sect" property="sect" jdbcType="VARCHAR"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+        <result column="popularity" property="popularity" jdbcType="INTEGER"/>
+        <association property="singer" column="singer_id" javaType="com.design.model.Singer"
+                     select="com.design.repo.SingerMapper.selectById"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
       id,
       langueges,
       sect,
@@ -26,16 +42,16 @@
       update_date,
       del_flag,
       popularity
-  </sql>
+    </sql>
 
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from album
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from album
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
 
-  <insert id="insert" parameterType="com.design.model.Album" >
+    <insert id="insert" parameterType="com.design.model.Album">
       insert into album (
       id,
       langueges,
@@ -62,58 +78,74 @@
       #{popularity,jdbcType=INTEGER})
   </insert>
 
-  <update id="update" parameterType="com.design.model.Album" >
-    update album
-    <set >
-      <if test="langueges != null" >
-        langueges = #{langueges,jdbcType=VARCHAR},
-      </if>
-      <if test="sect != null" >
-        sect = #{sect,jdbcType=VARCHAR},
-      </if>
-      <if test="singerId != null" >
-          singer_id = #{singerId,jdbcType=VARCHAR},
-      </if>
-      <if test="remarks != null" >
-        remarks = #{remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        update_by = #{updateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null" >
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="delFlag != null" >
-        del_flag = #{delFlag,jdbcType=VARCHAR},
-      </if>
-      <if test="popularity != null" >
-        popularity = #{popularity,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+    <update id="update" parameterType="com.design.model.Album">
+        update album
+        <set>
+            <if test="langueges != null">
+                langueges = #{langueges,jdbcType=VARCHAR},
+            </if>
+            <if test="sect != null">
+                sect = #{sect,jdbcType=VARCHAR},
+            </if>
+            <if test="singerId != null">
+                singer_id = #{singerId,jdbcType=VARCHAR},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="popularity != null">
+                popularity = #{popularity,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 
-  <delete id="delete" parameterType="java.lang.String">
-    delete from album
-    where id IN
-    <foreach collection="list" open="(" close=")" separator="," item="id">
-      #{id}
-    </foreach>
-  </delete>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from album
+        where id IN
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
 
-  <delete id="deleteByLogic" parameterType="java.lang.String">
-    UPDATE album SET
-    del_flag =${@com.design.common.enumeration.DelFlagEnum@YES.getValue()},
-    update_date = current_timestamp()
-    WHERE id IN
-    <foreach collection="list" open="(" close=")" separator="," item="id">
-      #{id}
-    </foreach>
-  </delete>
+    <delete id="deleteByLogic" parameterType="java.lang.String">
+        UPDATE album SET
+        del_flag =${@com.design.common.enumeration.DelFlagEnum@YES.getValue()},
+        update_date = current_timestamp()
+        WHERE id IN
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getByCondition" resultMap="OutResultMap" parameterType="com.design.domain.album.AlbumCriteria">
+        select
+        <include refid="Base_Column_List"/>
+        from album
+        <if test="languages != null">
+            langueges = #{languages}
+        </if>
+        <if test="sect != null">
+            sect = #{sect}
+        </if>
+        order by popularity desc
+        <if test="count != null">
+            limit #{count}
+        </if>
+    </select>
 </mapper>

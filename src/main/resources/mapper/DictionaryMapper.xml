@@ -103,12 +103,20 @@
 
   <delete id="deleteByLogic" parameterType="java.lang.String">
     UPDATE dictionary SET
-    del_flag =${@com.mybatis.test.common.enumeration.DelFlagEnum@YES.getValue()},
+    del_flag =${@com.design.common.enumeration.DelFlagEnum@YES.getValue()},
     update_date = current_timestamp()
     WHERE id IN
     <foreach collection="list" open="(" close=")" separator="," item="id">
       #{id}
     </foreach>
   </delete>
+
+  <select id="getByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from dictionary
+    where `type` = #{type,jdbcType=VARCHAR}
+    and  del_flag =${@com.design.common.enumeration.DelFlagEnum@NO.getValue()}
+  </select>
 
 </mapper>

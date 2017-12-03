@@ -110,7 +110,7 @@
 
     <delete id="deleteByLogic" parameterType="java.lang.String">
         UPDATE singer SET
-        del_flag =${@com.mybatis.test.common.enumeration.DelFlagEnum@YES.getValue()},
+        del_flag =${@com.design.common.enumeration.DelFlagEnum@YES.getValue()},
         update_date = current_timestamp()
         WHERE id IN
         <foreach collection="list" open="(" close=")" separator="," item="id">
